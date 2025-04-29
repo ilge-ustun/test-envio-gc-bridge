@@ -46,7 +46,7 @@ ForeignBridgeErcToNative.UserRequestForAffirmation.handler(async ({ event, conte
   context.XDAITransaction.set(transaction);
 });
 
-// before upgrade, the UserRequestForAffirmation event doesn't have nonce
+// before upgrade the UserRequestForAffirmation event doesn't have nonce
 // not working
 ForeignBridgeErcToNative.UserRequestForAffirmation.handler(async ({ event, context }) => {
   if (event.block.number >= 22273407) {

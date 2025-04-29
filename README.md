@@ -6,6 +6,51 @@
 
 - The proxy is upgraded on block 22273407: [https://etherscan.io/tx/0xc4db8a77365d4870af65f44232ca728e5e0fd583cde3ba83ba81cac3d77ff89d](https://etherscan.io/tx/0xc4db8a77365d4870af65f44232ca728e5e0fd583cde3ba83ba81cac3d77ff89d)
 
+
+### ABI for `UserRequestForAffirmation` events:
+/abi/ForeignBridgeErcToNative.json
+```
+  {
+      "anonymous":false,
+      "inputs":[
+         {
+            "indexed":false,
+            "name":"recipient",
+            "type":"address"
+         },
+         {
+            "indexed":false,
+            "name":"value",
+            "type":"uint256"
+         },
+         {
+            "indexed":false,
+            "name":"nonce",
+            "type":"bytes32"
+         }
+      ],
+      "name":"UserRequestForAffirmation",
+    "type": "event"
+  },
+  {
+      "anonymous":false,
+      "inputs":[
+         {
+            "indexed":false,
+            "name":"recipient",
+            "type":"address"
+         },
+         {
+            "indexed":false,
+            "name":"value",
+            "type":"uint256"
+         }
+      ],
+      "name":"UserRequestForAffirmation",
+    "type": "event"
+  }
+  ```
+
 #### Example events
 
 - before upgrade:
