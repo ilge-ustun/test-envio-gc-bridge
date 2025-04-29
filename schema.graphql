@@ -1,0 +1,19 @@
+type XDAITransaction implements Transaction @entity(immutable: false) {
+  id: ID! # Transaction Hash
+  transactionHash: Bytes
+  bridgeName: String
+  initiator: Bytes
+  initiatorNetwork: String
+  initiatorAmount: BigInt
+  initiatorToken: Bytes
+  receiver: Bytes
+  receiverNetwork: String
+  receiverAmount: BigInt
+  receiverToken: Bytes
+  # transactionStatus: TransactionStatus
+  timestamp: BigInt
+  # validations: [TransactionValidation!] @derivedFrom(field: "transaction")
+  # execution: TransactionExecution
+  messageId: Bytes
+  # nonce: Bytes | undefined # Nonce parameter for UserRequestForSignatureWithNonce events
+}

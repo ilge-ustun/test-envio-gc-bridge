@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: envio-indexer
+networks:
+- id: 1
+  start_block: 22272590
+  contracts:
+  - name: ForeignBridgeErcToNative
+    address:
+    - 0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016
+    handler: src/EventHandlers.ts
+    events:
+    # - event: UserRequestForAffirmation(address recipient, uint256 value)
+    - event: UserRequestForAffirmation(address recipient, uint256 value, bytes32 nonce)
+unordered_multichain_mode: true
+field_selection:
+  transaction_fields:
+    - hash
