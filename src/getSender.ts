@@ -1,6 +1,6 @@
 import { createPublicClient, http, getAddress } from "viem";
 import { mainnet } from "viem/chains";
-import { TRANSFER_TOPIC } from "./const";
+import { TRANSFER_TOPIC, ZERO_ADDRESS } from "./const";
 
 const RPC_ETHEREUM = process.env.RPC_ETHEREUM;
 
@@ -12,11 +12,13 @@ const client = createPublicClient({
 export async function getSender(txHash: `0x${string}`): Promise<string> {
   try {
     // Get transaction receipt
+    console.log(`Getting sender for transaction ${txHash}`);
     const receipt = await client.getTransactionReceipt({ hash: txHash });
     
     if (!receipt) {
       console.log(`No receipt found for transaction ${txHash}`);
-      throw new Error(`No receipt found for transaction ${txHash}`);
+      // throw new Error(`No receipt found for transaction ${txHash}`);
+      return ZERO_ADDRESS;
     }
 
     // Find the Transfer event log
@@ -35,7 +37,8 @@ export async function getSender(txHash: `0x${string}`): Promise<string> {
     }
 
     console.log(`No Transfer event found in transaction ${txHash}`);
-    throw new Error(`No Transfer event found in transaction ${txHash}`);
+    return ZERO_ADDRESS;
+    // throw new Error(`No Transfer event found in transaction ${txHash}`);
   } catch (error) {
     console.error(`Error getting sender for transaction ${txHash}:`, error);
     throw new Error(`Error getting sender for transaction ${txHash}: ${error}`);

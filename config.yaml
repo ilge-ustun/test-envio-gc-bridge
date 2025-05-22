@@ -2,15 +2,23 @@
 name: envio-indexer
 networks:
 - id: 1
-  start_block: 22272590
+  start_block: 22536815
   contracts:
   - name: ForeignBridgeErcToNative
     address:
     - 0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016
-    handler: src/EventHandlers.ts
+    handler: src/foreign-xdai.ts
     events:
-    # - event: UserRequestForAffirmation(address recipient, uint256 value)
+    - event: UserRequestForAffirmation(address recipient, uint256 value)
+      name: UserRequestForAffirmation1
     - event: UserRequestForAffirmation(address recipient, uint256 value, bytes32 nonce)
+      name: UserRequestForAffirmation2
+    - event: RelayedMessage(address recipient, uint256 value, bytes32 transactionHash)
+  - name: ERC20
+    handler: src/foreign-xdai.ts
+    events:
+    - event: Transfer(address src, address dst, uint256 wad)
+      name: Transfer
 unordered_multichain_mode: true
 field_selection:
   transaction_fields:
